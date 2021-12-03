@@ -25,8 +25,8 @@
 
     <%= render 'spree/products/filter_and_sort_mobile_buttons' %>
     <%= render 'spree/products/sort_desktop', permitted_params: permitted_params %>
-    <div class="container mb-3 d-md-flex">
-      <%= render 'spree/products/filters_desktop', permitted_params: permitted_params %>
+    <%#= render 'spree/products/filters_desktop', permitted_params: permitted_params %>
+    <div class="container-fluid mb-3 d-md-flex justify-content-center">
       <%= render 'spree/shared/products', products: @products %>
     </div>
   <% end %>
