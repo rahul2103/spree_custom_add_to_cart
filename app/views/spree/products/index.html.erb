@@ -17,16 +17,14 @@
       </div>
     <% elsif not @taxon %>
       <div id="no-taxon-banner">
-        <div class="container">
-          <%= render 'spree/shared/taxonomies', taxons: Spree::Taxonomy.all.limit(8), title: 'Top Products' %>
-        </div>
+        <%= render 'spree/shared/taxonomies', taxons: Spree::Taxonomy.all.limit(8), title: 'Top Products' %>
       </div>
     <% end %>
 
     <%= render 'spree/products/filter_and_sort_mobile_buttons' %>
-    <%= render 'spree/products/sort_desktop', permitted_params: permitted_params %>
-    <%#= render 'spree/products/filters_desktop', permitted_params: permitted_params %>
+    <%#= render 'spree/products/sort_desktop', permitted_params: permitted_params %>
     <div class="container-fluid mb-3 d-md-flex justify-content-center">
+      <%#= render 'spree/products/filters_desktop', permitted_params: permitted_params %>
       <%= render 'spree/shared/products', products: @products %>
     </div>
   <% end %>
