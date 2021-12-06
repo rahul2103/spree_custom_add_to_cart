@@ -3,6 +3,10 @@ module SpreeCustomAddToCart
     class InstallGenerator < Rails::Generators::Base
       class_option :migrate, type: :boolean, default: true
 
+      def add_javascripts
+        append_file 'vendor/assets/javascripts/spree/frontend/all.js', "//= require spree/frontend/custom_add_to_cart.js\n"
+      end
+
       def add_migrations
         run 'bundle exec rake railties:install:migrations FROM=spree_custom_add_to_cart'
       end

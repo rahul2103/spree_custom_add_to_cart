@@ -5,9 +5,9 @@
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% taxons.each do |taxon| %>
       <div class="col p-3">
-        <div class="card border-dark bg-light h-100 w-100 rounded", style="min-height: 10rem">
+        <div class="card shadow-lg p-3 bg-light h-100 w-100 rounded", style="min-height: 10rem">
           <div class="card-body text-success d-flex align-content-end flex-wrap">
-            <%= link_to taxon.name, nested_taxons_path(taxon), class: 'btn btn-primary' %>
+            <%= link_to taxon.name, nested_taxons_path(taxon), class: 'btn btn-primary rounded w-100 shadow' %>
           </div>
         </div>
       </div>
