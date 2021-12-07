@@ -1,6 +1,36 @@
 //= require spree/api/main
 //= require spree/api/storefront/cart
 
+document.addEventListener('turbolinks:load', function () {
+  $(document).ready(function () {
+    $(".quick-add-cart-button").click(function(){
+      var product_summary = $(this).data('product-summary');
+      var variant_id = $(this).data('variant-id');
+      var variant_summary = $(this).data('variant-summary');
+
+      if (SpreeAPI.orderToken == null){
+          SpreeAPI.Storefront.createCartCustom();
+      }
+
+      Spree.ensureCart(function() {
+        SpreeAPI.Storefront.addToCart(
+          variant_id,
+          1,
+          {},
+          function(response) {
+            Spree.fetchCart()
+          },
+          function(error) {
+            if (typeof error === 'string' && error !== '') {
+              alert(error);
+            }
+          }
+        )
+      })
+    });
+  })
+})
+
 SpreeAPI.Storefront.createCartCustom = function (successCallback, failureCallback) {
   fetch(Spree.routes.api_v2_storefront_cart_create, {
       method: 'POST',
@@ -22,36 +52,6 @@ SpreeAPI.Storefront.createCartCustom = function (successCallback, failureCallbac
   })
 }
 
-Spree.ready(function($) {
-  Spree.plpAddToCartFeature();
-})
 
 
-Spree.plpAddToCartFeature = function() {
-  $(".quick-add-cart-button").click(function(){
-    var product_summary = $(this).data('product-summary');
-    var variant_id = $(this).data('variant-id');
-    var variant_summary = $(this).data('variant-summary');
-
-    if (SpreeAPI.orderToken == null){
-        SpreeAPI.Storefront.createCartCustom();
-    }
-
-    Spree.ensureCart(function() {
-      SpreeAPI.Storefront.addToCart(
-        variant_id,
-        1,
-        {},
-        function(response) {
-          Spree.fetchCart()
-        },
-        function(error) {
-          if (typeof error === 'string' && error !== '') {
-            alert(error);
-          }
-        }
-      )
-    })
-  });
-}
 
