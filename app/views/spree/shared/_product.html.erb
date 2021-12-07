@@ -1,7 +1,9 @@
 <% url = spree.product_path(product, taxon_id: @taxon&.id) %>
 <%= link_to url, class: 'd-flex flex-column justify-content-between' do %>
   <% cache [common_product_cache_keys, product] do %>
-    <%= plp_and_carousel_image(product, image_class) %>
+    <div class="overflow-hidden d-flex align-items-center", style="min-height: 25rem; max-height: 25rem;">
+      <%= plp_and_carousel_image(product, image_class) %>
+    </div>
     <div>
       <div class="product-component-name" title="<%= product.name %>">
         <%= product.name %>
