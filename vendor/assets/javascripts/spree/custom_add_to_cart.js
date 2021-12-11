@@ -3,7 +3,7 @@
 
 document.addEventListener('turbolinks:load', function () {
   $(document).ready(function () {
-    $(".quick-add-cart-button").click(function(){
+    $(".custom-quick-add-cart-button").click(function(){
       var product_summary = $(this).data('product-summary');
       var variant_id = $(this).data('variant-id');
       var variant_summary = $(this).data('variant-summary');

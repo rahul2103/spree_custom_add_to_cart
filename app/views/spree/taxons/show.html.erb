@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'spree/custom_add_to_cart', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 <div class="taxon">
   <% if @taxon.children.present? %>
     <div class="container">

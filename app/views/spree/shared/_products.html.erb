@@ -2,6 +2,7 @@
   <% if products.respond_to?(:total_pages) %>
     <%= rel_next_prev_link_tags products %>
   <% end %>
+  <%= javascript_include_tag 'spree/custom_add_to_cart', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
 <div class="col-md-12 col-lg-9" data-hook="homepage_products">

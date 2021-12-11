@@ -17,7 +17,7 @@
   <% if stock_present && product.variants.any? %>
     <%= link_to Spree.t(:select_variants), url, class: 'btn btn-outline-info w-100 my-2 text-truncate rounded' %>
   <% elsif stock_present  %>
-    <%= button_tag Spree.t(:add_to_cart), class: 'btn btn-outline-primary quick-add-cart-button w-100 my-2 text-truncate rounded', data: { variant_id: product.master.id, variant_summary: Spree::VariantPresenter.new({ variants: product.variants, is_product_available_in_currency: !(product.price_in(current_currency).amount.nil?  || product.price_in(current_currency).amount.zero?), current_currency: current_currency, current_price_options: {} }).call.first.to_json, product_summary: Spree::ProductSummaryPresenter.new(product).call.to_json } %>
+    <%= button_tag Spree.t(:add_to_cart), class: 'btn btn-outline-primary custom-quick-add-cart-button w-100 my-2 text-truncate rounded', data: { variant_id: product.master.id, variant_summary: Spree::VariantPresenter.new({ variants: product.variants, is_product_available_in_currency: !(product.price_in(current_currency).amount.nil?  || product.price_in(current_currency).amount.zero?), current_currency: current_currency, current_price_options: {} }).call.first.to_json, product_summary: Spree::ProductSummaryPresenter.new(product).call.to_json } %>
   <% else %>
     <%= button_tag Spree.t(:out_of_stock), class: 'btn btn-outline-danger w-100 my-2 fw-bold text-truncate rounded', disabled: true %>
   <% end %>
