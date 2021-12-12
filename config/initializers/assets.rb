@@ -1,1 +1,0 @@
-Rails.application.config.assets.precompile += %w( spree/custom_add_to_cart.js )

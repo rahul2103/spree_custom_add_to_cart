@@ -5,10 +5,6 @@
   </div>
 <% end %>
 
-<% content_for :head do %>
-  <%= javascript_include_tag 'spree/custom_add_to_cart', 'data-turbolinks-track': 'reload' %>
-<% end %>
-
 <% if @homepage %>
     <% @homepage.cms_sections.each do |section| %>
       <%= build_section(section) %>
