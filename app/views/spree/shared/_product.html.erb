@@ -1,8 +1,10 @@
 <% url = spree.product_path(product, taxon_id: @taxon&.id) %>
 <%= link_to url, class: 'd-flex flex-column justify-content-between' do %>
   <% cache [common_product_cache_keys, product] do %>
-    <div class="overflow-hidden d-flex align-items-center", style="min-height: 25rem; max-height: 25rem;">
-      <%= plp_and_carousel_image(product, image_class) %>
+    <div class="align-items-center">
+      <div class="imagecover">
+        <%= plp_and_carousel_image(product, image_class + ' card-img-top' ) %>
+      </div>
     </div>
     <div>
       <div class="product-component-name" title="<%= product.name %>">
@@ -22,3 +24,33 @@
     <%= button_tag Spree.t(:out_of_stock), class: 'btn btn-outline-danger w-100 my-2 fw-bold text-truncate rounded', disabled: true %>
   <% end %>
 </div>
+
+<style type="text/css">
+/* Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
+  .imagecover {
+    height: 9rem;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px)*/
+@media (min-width: 767.98px) { 
+  .imagecover {
+    height: 11rem;
+  }
+}
+
+/* Medium devices (tablets, less than 992px)*/
+@media (min-width: 991.98px) {
+  .imagecover {
+    height: 15rem;
+  }
+}
+
+/* Large devices (desktops, less than 1200px)*/
+@media (min-width: 1199.98px) {
+  .imagecover {
+    height: 25rem;
+  }
+}
+</style>
