@@ -1,56 +1,57 @@
 <% url = spree.product_path(product, taxon_id: @taxon&.id) %>
-<%= link_to url, class: 'd-flex flex-column justify-content-between' do %>
-  <% cache [common_product_cache_keys, product] do %>
-    <div class="align-items-center">
-      <div class="imagecover">
-        <%= plp_and_carousel_image(product, image_class + ' card-img-top' ) %>
-      </div>
-    </div>
-    <div>
-      <div class="product-component-name" title="<%= product.name %>">
-        <%= product.name %>
-      </div>
-      <div class="product-component-price"><%= display_price(product) %></div>
+<div class="card border-0">
+  <%= link_to url, class: 'd-flex flex-column justify-content-between' do %>
+    <div class="card-header bg-transparent border-0 overflow-hidden p-0">
+    <% cache [common_product_cache_keys, product] do %>
+      <%= plp_and_carousel_image(product, image_class + ' card-img-top align-self-between rounded-lg') %>
+    <% end %>
     </div>
   <% end %>
-<% end %>
-<div class="container-flex">
-  <% stock_present = product.in_stock? %>
-  <% if stock_present && product.variants.any? %>
-    <%= link_to Spree.t(:select_variants), url, class: 'btn btn-outline-info w-100 my-2 text-truncate rounded' %>
-  <% elsif stock_present  %>
-    <%= button_tag Spree.t(:add_to_cart), class: 'btn btn-outline-primary custom-quick-add-cart-button w-100 my-2 text-truncate rounded', data: { variant_id: product.master.id, variant_summary: Spree::VariantPresenter.new({ variants: product.variants, is_product_available_in_currency: !(product.price_in(current_currency).amount.nil?  || product.price_in(current_currency).amount.zero?), current_currency: current_currency, current_price_options: {} }).call.first.to_json, product_summary: Spree::ProductSummaryPresenter.new(product).call.to_json } %>
-  <% else %>
-    <%= button_tag Spree.t(:out_of_stock), class: 'btn btn-outline-danger w-100 my-2 fw-bold text-truncate rounded', disabled: true %>
-  <% end %>
+
+  <div class="card-body p-0">
+    <h5 class="card-title product-component-name" title="<%= product.name %>"><%= product.name %></h5>
+    <p class="card-text product-component-price"><%= display_price(product) %></p>
+  </div>
+  <div class="card-footer bg-transparent border-0 p-0">
+    <% stock_present = product.in_stock? %>
+    <% if stock_present && product.variants.any? %>
+      <%= link_to Spree.t(:select_variants), url, class: 'btn btn-outline-info w-100 my-2 text-truncate rounded' %>
+    <% elsif stock_present  %>
+      <%= button_tag Spree.t(:add_to_cart), class: 'btn btn-outline-primary custom-quick-add-cart-button w-100 my-2 text-truncate rounded', data: { variant_id: product.master.id, variant_summary: Spree::VariantPresenter.new({ variants: product.variants, is_product_available_in_currency: !(product.price_in(current_currency).amount.nil?  || product.price_in(current_currency).amount.zero?), current_currency: current_currency, current_price_options: {} }).call.first.to_json, product_summary: Spree::ProductSummaryPresenter.new(product).call.to_json } %>
+    <% else %>
+      <%= button_tag Spree.t(:out_of_stock), class: 'btn btn-outline-danger w-100 my-2 fw-bold text-truncate rounded', disabled: true %>
+    <% end %>
+  </div>
 </div>
 
 <style type="text/css">
-/* Extra small devices (portrait phones, less than 576px)*/
-@media (max-width: 575.98px) {
-  .imagecover {
-    height: 9rem;
+.product-component-image {
+    width: 100%;
+    object-fit: scale-down;
+    height: 100%;
+}
+
+@media (min-width: 1200px) {
+  .card-header {
+    height: 20rem;
   }
 }
 
-/* Small devices (landscape phones, less than 768px)*/
-@media (min-width: 767.98px) { 
-  .imagecover {
-    height: 11rem;
+@media (max-width: 576px) {
+  .card-header {
+    height: 20rem;
   }
 }
 
-/* Medium devices (tablets, less than 992px)*/
-@media (min-width: 991.98px) {
-  .imagecover {
+@media (max-width: 768px) {
+  .card-header {
     height: 15rem;
   }
 }
 
-/* Large devices (desktops, less than 1200px)*/
-@media (min-width: 1199.98px) {
-  .imagecover {
-    height: 25rem;
+@media (max-width: 575.98px) {
+  .card-header {
+    height: 10rem;
   }
 }
 </style>
